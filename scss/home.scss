@@ -318,10 +318,10 @@ h1{
         height: calc(151px + 2rem);
 
         clip-path: polygon(
-                            0 5%, 
+                            0 min(5vw, 100%), 
                             calc(50% - 135px) 0,
                             calc(50% + 135px) 0,
-                            100% 5%,
+                            100% min(5vw, 100%),
                             100% 100%,
                             0 100%);
     }
