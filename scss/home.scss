@@ -40,6 +40,51 @@
     }  
 }
 
+.beam{
+    background: linear-gradient(90deg, 
+                                transparent calc(50% - 135px),
+                                rgba(#00FFFF, 50%) calc(50% - 135px),
+                                rgba(#00FFFF, 50%) calc(50% + 135px),
+                                transparent calc(50% + 135px));
+
+    position: relative;
+    &::before{
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background-image: url("../images/kaboom-beam-only-155.png");
+        background-repeat: repeat-y;
+        background-position: center top;
+        background-size: 155px auto;
+    }    
+}
+.beam-on-floor{
+    display: block;
+    background: rgba(#00FFFF, 50%);
+    
+    position: absolute;
+    top: 190px;
+    left: 0;
+    width: 100%;
+    height: calc(151px + 2rem);
+
+    clip-path: polygon(
+                        0 min(5vw, 100%), 
+                        calc(50% - 135px) 0,
+                        calc(50% + 135px) 0,
+                        100% min(5vw, 100%),
+                        100% 100%,
+                        0 100%);
+
+}
+
+
+
 nav{
     display: flex;
     align-items: center;
@@ -68,7 +113,6 @@ nav{
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .text-contents{
@@ -77,33 +121,7 @@ nav{
     align-items: center;
 
     padding: 0.3rem 0 0 0;
-
-    background: linear-gradient(90deg, 
-                                transparent calc(50% - 135px),
-                                rgba(#00FFFF, 50%) calc(50% - 135px),
-                                rgba(#00FFFF, 50%) calc(50% + 135px),
-                                transparent calc(50% + 135px));
-
-
-    position: relative;
-    &::before{
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-
-        background-image: url("../images/kaboom-beam-only-155.png");
-        background-repeat: repeat-y;
-        background-position: center top;
-        background-size: 155px auto;
-    }
 }
-
-
-
 
 .heading-container{
     display: flex;
@@ -197,39 +215,20 @@ h1{
     position: relative;
 
     .beam{
+        /* ---------------------------------------------------------------------------------
+        Note: this class has a background and pseudo element set elsewhere.
+        The standard .beam styling includes position: relative, to support the absolute 
+        positioning of the pseudo element with the "core" of the beam.
+        In this instance, position is overidden to "absolute" instead, because "relative" 
+        messes up the hero image layout. Sure, I could fiddle about with z-index, but 
+        in this case it's unnecessary: the parent element has "relative".
+        */
         position: absolute;
+
         width: 100%;
-        height: 190px;
-
-        background: linear-gradient(90deg, 
-            transparent calc(50% - 135px),
-            rgba(#00FFFF, 50%) calc(50% - 135px),
-            rgba(#00FFFF, 50%) calc(50% + 135px),
-            transparent calc(50% + 135px));
-
-        display: flex;
-        justify-content: center;
-        align-content: flex-end;
-
-        &::before{
-            content: "";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 180px;
-
-            background-image: url("../images/kaboom-beam-only-155.png");
-            background-repeat: repeat-y;
-            background-position: center top;
-            background-size: 155px auto;
-        }
+        height: 190px;  // Set by eye. Its bottom must be hidden by the beam source image.
     }
 }
-
-
-
 
 .hero-container{
     display: flex;
@@ -283,48 +282,20 @@ h1{
 
 }
 
-.magic-beam{
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    height: 540px;
+// .magic-beam{
+//     position: absolute;
+//     z-index: 2;
+//     top: 0;
+//     height: 540px;
 
-    background-image: url("../images/kaboom-beam-only-155.png");
-    background-repeat: repeat-y;
+//     background-image: url("../images/kaboom-beam-only-155.png");
+//     background-repeat: repeat-y;
 
-    display: flex;
-    align-items: flex-end;
-}
+//     display: flex;
+//     align-items: flex-end;
+// }
 
 
-.magic-beam-light{
-    display: block;
-    background: rgba(#00FFFF, 50%);
-    
-    &:first-of-type{
-        position: absolute;
-        top: 0;
-        left: calc(50% - 135px);
 
-        margin: 0 auto;
-        width: 270px;
-        height: 510px;
-    }
-    &:last-of-type{
-        position: absolute;
-        top: 190px;
-        left: 0;
-        width: 100%;
-        height: calc(151px + 2rem);
-
-        clip-path: polygon(
-                            0 min(5vw, 100%), 
-                            calc(50% - 135px) 0,
-                            calc(50% + 135px) 0,
-                            100% min(5vw, 100%),
-                            100% 100%,
-                            0 100%);
-    }
-}
 
 
