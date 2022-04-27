@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Alex Symonds Portfolio</title>
-        <link href="static/styles/index.css" rel="stylesheet">
+        <link href="static/css/index.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <script>
@@ -10,27 +10,54 @@
         </script>
     </head>
     <body>
-        <div class="whole_page_container">
-
+        <div class="whole-page-container">
             <nav>
                 <a href="projects.html">projects</a>
+                <a href="projects.html">contact</a>
                 <a href="about.html">about</a>
             </nav>
+            <article class="page-contents">
+                <div class="magic-beam-light"></div>
+                <div class="magic-beam">
+                    <picture class="me-rune">
+                        <source media="(min-width: 500px)" srcset="static/images/kaboom-source-only-320.png">
+                        <img src="static/images/kaboom-source-only-155.png" alt="Magical beam of light bursting upwards." />
+                    </picture>
+                </div>
 
-            <section class="heading-container">
-                <img src="static/images/logo.svg" />
-                <h1>Alex Symonds</h1>
-                <span class="subheading">web developer</span>
-            </section>
+                <section class="heading-container">
+                    <img src="static/images/logo.svg" width="100px" />
+                    <h1>Alex Symonds</h1>
+                    <span class="subheading">web developer</span>
+                </section>
 
-            <section class="tagline-container">
-                <p>Let me help you battle the <emphasis>monsters</emphasis> of web development with the <emphasis>magic</emphasis> of code!</p>
-            </section>
+                <section class="tagline-container">
+                    <p>Let me help you battle the <emphasis>monsters</emphasis> of web development with the <emphasis>magic</emphasis> of code!</p>
+                </section>
 
-            <section class="cta-container">
-                <a href="contact.html">hire me</a>
-            </section>
+                <section class="cta-container">
+                    <a href="contact.html">hire me</a>
+                </section>
 
+                <section class="hero-container">
+                    <div class="me-rune-container">
+                        <picture class="rune">
+                            <source media="(min-width: 500px)" srcset="static/images/rune-underlay-523.png">
+                            <img src="static/images/rune-underlay-375.png" alt="" />
+                        </picture>
+                        <picture class="me">
+                            <source media="(min-width: 500px)" srcset="static/images/me-overlay-523.png">
+                            <img src="static/images/me-overlay-375.png" alt="A magical arcane rune on the floor bears the logos of React, Django and Python. Alex Symonds sits on top of it with a laptop, emitting a magical beam of light." />
+                        </picture>
+                    </div>
+                    <img class="dissolver-lefty" src="static/images/dissolver-lefty-134.png" width="120px" alt="A shadowy ghost being dissolved by a magical beam of light." />
+                    <img class="dissolver-righty" src="static/images/dissolver-righty-165.png" width="140px" alt="A small shadowy snakey-dragon being dissolved by a magical beam of light." />
+                </section>
+
+                <div class="floor-container">
+                    <div class="magic-beam-light"></div>
+                </div>
+            </article>
         </div>
     </body>
 </html>

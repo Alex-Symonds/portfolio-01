@@ -1,0 +1,243 @@
+@use 'variables' as v;
+
+/* CONTENTS
+    This file contains styles specific to the homepage.
+        -- || Fonts
+*/
+
+
+// || Fonts
+@font-face {
+    font-family: "Archi";
+    src: url("../fonts/ArchitectsDaughter-Regular.ttf");
+} 
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf");
+} 
+
+@font-face {
+    font-family: "Ubuntu";
+    src: url("../fonts/Ubuntu-Regular.ttf");
+} 
+
+.whole-page-container{
+    position: relative;
+    width: 100%;
+    padding: 0 0 2rem 0;
+
+    // On narrow screens the PNG may not fill the screen vertically. Set the background to change from the "normal" colour to black, hiding where the PNG ends.
+    background: url("../images/monster-bg-small.png"), linear-gradient(180deg, #303030 635px, black 635px);
+    background-position: -40px 0;
+    background-repeat: no-repeat;
+    background-size: 1140px auto;
+}
+@media screen and (min-width: 735px){
+    .whole-page-container{
+        background: url("../images/monster-bg-1920.png"), #303030;
+        background-position: center top;
+    }  
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 2rem;
+
+    padding: 0 1rem;
+
+    background: rgba(#000, 50%);
+    
+    position: relative;
+    z-index: 3;
+
+    a{
+        font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+        color: white;
+
+        &:hover, &:active, &:focus{
+            color: cyan;
+        }
+    }
+}
+
+.page-contents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 0.3rem 0;
+}
+
+.heading-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+
+    img{
+        position: relative;
+        z-index: 2;
+    }
+}
+
+h1{
+    position: relative;
+    z-index: 2;
+
+    margin: 0.3rem 0 0 0;
+    padding: 0 0.5rem;;
+
+    background: white;
+    border-radius: 1.2rem;
+
+    font-family: Archi, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.8rem;
+}
+
+.subheading{
+    position: relative;
+    top: -0.25rem;
+    z-index: 2;
+
+    font-size: 1.4rem;
+
+    padding: 0.1rem 0.7rem;
+
+    background: white;
+    border-radius: 1rem;
+    font-family: Ubuntu, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.tagline-container{
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    max-width: 523px;
+
+    p{
+        text-align: center;
+        margin-top: 0.75rem;
+        padding: 0.5rem 0.75rem; 
+        font-size: 1rem;
+
+        color: white;
+        font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+
+        background: rgba(#000, 70%);
+
+        emphasis{
+            font-weight: bold;
+        }
+    }
+    
+}
+
+.cta-container{
+    position: relative;
+    z-index: 2;
+    margin-top: 0.6rem;
+
+    a{
+        background: black;
+        border: 1px solid cyan;
+        border-radius: 2.3rem;
+
+        padding: 0.70rem 1.75rem;
+
+        font-size: 1.3rem;
+        font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+        color: white;
+    }
+}
+
+.hero-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 20px;
+
+    max-width: 100%;
+
+    box-sizing: border-box;
+    overflow: hidden;
+
+    position: relative;
+
+    .me-rune-container{
+        position: relative;
+        margin-top: 65px;
+
+        .me{
+            position: relative;
+            z-index: 3;
+        }
+
+        .rune{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    .dissolver-lefty{
+        position: absolute;
+        top: 0;
+        left: calc(50% - 125px);
+        z-index: 2;
+    }
+    .dissolver-righty{
+        position: absolute;
+        top: 0;
+        right: calc(50% - 135px);
+        z-index: 2;
+    }
+
+}
+
+.magic-beam{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    height: 540px;
+
+    background-image: url("../images/kaboom-beam-only-155.png");
+    background-repeat: repeat-y;
+
+    display: flex;
+    align-items: flex-end;
+}
+.magic-beam-light{
+    display: block;
+    background: rgba(#00FFFF, 50%);
+    
+    &:first-of-type{
+        position: absolute;
+        top: 0;
+        left: calc(50% - 135px);
+
+        margin: 0 auto;
+        width: 270px;
+        height: 510px;
+    }
+    &:last-of-type{
+        position: absolute;
+        top: 510px;
+        left: 0;
+        width: 100%;
+        height: calc(153px + 2rem);
+
+        clip-path: polygon(
+                            0 5%, 
+                            calc(50% - 135px) 0,
+                            calc(50% + 135px) 0,
+                            100% 5%,
+                            100% 100%,
+                            0 100%);
+    }
+}
+
+
