@@ -18,6 +18,11 @@
 } 
 
 @font-face {
+    font-family: "Roboto-Bold";
+    src: url("../fonts/Roboto-Bold.ttf");
+} 
+
+@font-face {
     font-family: "Ubuntu";
     src: url("../fonts/Ubuntu-Regular.ttf");
 } 
@@ -124,19 +129,26 @@
 
 nav{
     display: flex;
-    align-items: center;
+    //align-items: center;
     justify-content: space-between;
 
     width: 100%;
-    max-width: 800px;
-    padding: 0 1rem;
+    max-width: 750px;
+    //padding: 0 1rem;
 
     a{
         font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
         color: white;
 
+        box-sizing: border-box;
+        height: 2rem;
+        width: 50%;
+        padding: 0.3rem 0;
+        text-align: center;
+
         &:hover, &:active, &:focus{
-            color: cyan;
+            background: rgba(#fff, 30%);
+            border-bottom: 3px solid v.$c_logo_main;
         }
     }
 }
@@ -222,7 +234,7 @@ h1{
         background: rgba(#111, 90%);
 
         emphasis{
-            font-weight: bold;
+            font-family: Roboto-Bold, Verdana, Geneva, Tahoma, sans-serif;
         }
     }
     
@@ -379,10 +391,12 @@ h1{
     }
     
     nav{
-        justify-content: space-around;
+        width: 750px;
         padding: 0 1rem;
     
         a{
+            width: 264px;
+            text-align: center;
             font-size: 1.4rem;
         }
     }
