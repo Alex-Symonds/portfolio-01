@@ -129,26 +129,26 @@
 
 nav{
     display: flex;
-    //align-items: center;
     justify-content: space-between;
 
     width: 100%;
     max-width: 750px;
-    //padding: 0 1rem;
 
     a{
-        font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
-        color: white;
-
         box-sizing: border-box;
+
         height: 2rem;
         width: 50%;
         padding: 0.3rem 0;
+
         text-align: center;
+
+        font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+        color: white;
 
         &:hover, &:active, &:focus{
             background: rgba(#fff, 30%);
-            border-bottom: 3px solid v.$c_logo_main;
+            border-bottom: 3px solid #98ffff; // this is the colour of the outmost layer of the "beam core"
         }
     }
 }
@@ -378,26 +378,19 @@ h1{
     }
 
     .nav-bar{
-        display: flex;
-        justify-content: center;
-    
-        background: rgba(#000, 50%);
-        
-        position: relative;
-        z-index: 3;
-    
-        width: 100%;
+        background: transparent;    // Darker background was for contrast when the white links went over the "beam core".
         height: 3rem;
     }
     
     nav{
         width: 750px;
-        padding: 0 1rem;
-    
+
         a{
-            width: 264px;
-            text-align: center;
             font-size: 1.4rem;
+
+            height: 3rem;
+            width: 265px; // this should fill the "outer beam" area on wide-mode
+            padding: 0.6rem 0 0;    
         }
     }
 
