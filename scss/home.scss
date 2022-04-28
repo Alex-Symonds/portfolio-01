@@ -23,13 +23,17 @@
 } 
 
 
+// || Everything related to the beam of light
 .beam{
+    // Apply the wider "outer beam"
+    width: 100%;
     background: linear-gradient(90deg, 
                                 rgba(black, 0) calc(50% - 135px),
                                 rgba(#00FFFF, 40%) calc(50% - 135px),
                                 rgba(#00FFFF, 40%) calc(50% + 135px),
                                 rgba(black, 0%) calc(50% + 135px));
 
+    // Apply the "inner core" of the beam
     position: relative;
     &::before{
         content: "";
@@ -46,25 +50,46 @@
         background-size: 155px 100%;
     }    
 }
+
+.decorative-contents .beam{
+    // Usually .beam is a background that must cover from top to bottom of its container, creating 
+    // a constant beam going up the page (regardless of how tall the containers responsively become).
+    // This .beam is special: it covers from the bottom of the "responsive background .beams" to where 
+    // the beam-source image is displayed.
+    position: absolute;             // relative messes up the layout and, fortunately, is unnecessary
+    height: 190px;                  // this makes it end in a nicely hidden spot
+}
+
 .beam-on-floor{
     display: block;
-    background: rgba(#00FFFF, 40%);
+    background: rgba(#00FFFF, 40%);     // match the "middle bit" of the .beam background gradient
     
     position: absolute;
-    top: 190px;
+    top: 190px;                         // match the height of .decorative-contents .beam (so outer beam is continuous)
     left: 0;
     width: 100%;
-    height: calc(151px + 2rem);
+    height: calc(151px + 2rem);         // (px value set by eye) + (the padding-bottom of .whole-page-container)
 
     clip-path: polygon(
-                        0 min(5vw, 100%), 
                         calc(50% - 135px) 0,
                         calc(50% + 135px) 0,
                         100% min(5vw, 100%),
                         100% 100%,
-                        0 100%);
+                        0 100%,
+                        0 min(5vw, 100%), );
 
+                        // clip-path: polygon(
+                        //     calc(50% - 135px) 0,
+                        //     calc(50% + 135px) 0,
+                        //     100% min(5vw, 100%),
+                        //     100% 100%,
+                        //     0 100%,
+                        //     0 min(5vw, 100%), );
 }
+
+
+
+
 
 .whole-page-container{
     position: relative;
@@ -76,6 +101,8 @@
     background-position: -40px 0;
     background-repeat: no-repeat;
     background-size: 1140px auto;
+
+    overflow: hidden;
 }
 
 
@@ -151,8 +178,17 @@ h1{
     border-radius: 1.2rem;
 
     font-family: Archi, Verdana, Geneva, Tahoma, sans-serif;
+
     font-size: 1.8rem;
+    color: transparent;
+
+    background: white;
+    background: url("../images/name.svg");
+    background-size: contain;
+    background-position: 0.3rem 0.1rem;
+    background-repeat: no-repeat;
 }
+
 
 .subheading{
     position: relative;
@@ -172,7 +208,7 @@ h1{
     position: relative;
     z-index: 2;
     width: 70%;
-    max-width: 523px;
+    max-width: 253px;
 
     p{
         text-align: center;
@@ -183,7 +219,7 @@ h1{
         color: white;
         font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
 
-        background: rgba(#000, 70%);
+        background: rgba(#111, 90%);
 
         emphasis{
             font-weight: bold;
@@ -219,21 +255,6 @@ h1{
     width: 100%;
 
     position: relative;
-
-    .beam{
-        /* ---------------------------------------------------------------------------------
-        Note: this class has a background and pseudo element set elsewhere.
-        The standard .beam styling includes position: relative, to support the absolute 
-        positioning of the pseudo element with the "core" of the beam.
-        In this instance, position is overidden to "absolute" instead, because "relative" 
-        messes up the hero image layout. Sure, I could fiddle about with z-index, but 
-        in this case it's unnecessary: the parent element has "relative".
-        */
-        position: absolute;
-
-        width: 100%;
-        height: 190px;  // Set by eye. Its bottom must be hidden by the beam source image.
-    }
 }
 
 .hero-container{
@@ -290,39 +311,58 @@ h1{
 }
 
 
-
-
-
 @media screen and (min-width: v.$breakpoint_wide_screen){
     .beam{
         background: linear-gradient(90deg, 
-                                    transparent calc(50% - 400px),
-                                    rgba(#00FFFF, 40%) calc(50% - 400px),
-                                    rgba(#00FFFF, 40%) calc(50% + 400px),
-                                    transparent calc(50% + 400px));
+                                    transparent calc(50% - 375px),
+                                    rgba(#00FFFF, 40%) calc(50% - 375px),
+                                    rgba(#00FFFF, 40%) calc(50% + 375px),
+                                    transparent calc(50% + 375px));
     
 
         &::before{
             background-image: url("../images/kaboom-beam-only-wide.png");
-            background-size: 320px auto;
+            background-size: 220px auto;
         }    
     }
+    .decorative-contents{ //275px
+        .beam{
+            height: 325px; // match this to ".beam-on-floor{ top:" to adjust height at which outer beam angles outwards.
+
+            &::before{
+                background-repeat: no-repeat;
+                background-size: 220px 180px;   // x value to match "normal" .beam::before; y value set by eye to sit nicely in hero image
+            }
+        }
+    }
     .beam-on-floor{
-        top: 190px;
-        height: calc(248px + 2rem);
+        top: 325px; // match this to ".decorative-contents .beam{ height:" to adjust height at which outer beam angles outwards.
+        height: calc(144px + 2rem);
     
         clip-path: polygon(
-                            0 min(5vw, 100%), 
-                            calc(50% - 400px) 0,
-                            calc(50% + 400px) 0,
-                            100% min(5vw, 100%),
-                            100% 100%,
-                            0 100%);
+                            calc(50% - 375px) 0,
+                            calc(50% + 375px) 0,
+                            calc(50% + 780px) 100%,
+                            calc(50% - 780px) 100%);
     }
 
     .whole-page-container{
         background: url("../images/monster-bg-wide.png"), #303030;
         background-position: center top;
+        background-repeat: repeat-x;
+
+        &::after{
+            display: block;
+            content: '';
+
+            position: absolute;
+            top: 0;
+            left: calc(50% - 960px);
+            
+            background: url("../images/dissolver-overlay.png");
+            height: 1020px;
+            width: 1920px;
+        }
     }
 
     .nav-bar{
@@ -349,70 +389,61 @@ h1{
 
     .heading-container{
         img{
-            //width: 226px;
-            width: 200px;
+            width: 160px;
         }
     }
 
     h1{
-        font-size: 4.6rem;
+        font-size: 3.5rem;
+        z-index: 3;
+        background-position-y: 0.2rem;
     }
 
     .subheading{
-        top: -0.3rem;
-        font-size: 2.7rem;
+        top: -0.6rem;
+        font-size: 2.3rem;
         padding: 0.4rem 1.5rem;
         border-radius: 2.7rem;
     }
 
     .tagline-container{
+        max-width: 523px;
         p{
-            margin: 1rem 0 0 0;
+            margin: 2rem 0 0 0;
             padding: 1rem 1.75rem; 
-            font-size: 1.65rem;
+            font-size: 1.55rem;
             line-height: 2.2rem;
         }  
     }
 
     .cta-container{
-        margin-top: 0.6rem;
+        margin-top: 1.5rem;
         z-index: 3;
     
         a{
-            border-radius: 4.4rem;
-            padding: 1rem 3.5rem;
-            font-size: 2.4rem;
+            border-radius: 4rem;
+            padding: 0.8rem 2.4rem;
+            font-size: 1.8rem;
         }
     }
 
-    .decorative-contents{
-        .beam{
-            height: 190px;  // Set by eye. Its bottom must be hidden by the beam source image.
-        }
-    }
+
 
     .hero-container{
-        margin-top: 20px;
+        margin-top: 38px;
         width: 100%;
 
         overflow: visible;
     
         .beam-source{
-            top: -50px;
+            top: 20px;
+            img{
+                width: 220px;
+            }
         }
-    
         .me-rune-container{
             margin-top: 65px;
-    
-            .me{
-
-            }
-    
-            .rune{
-
-            }
         }
-    
         .dissolver-lefty{
             top: 0;
             left: calc(50% - 350px);
