@@ -14,6 +14,11 @@ body{
 
 a{
     text-decoration: none;
+    outline: none;
+
+    &:focus{
+        outline: v.$c_logo_main dotted 2px;
+    }
 }
 
 

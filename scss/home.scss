@@ -1,5 +1,10 @@
 @use 'variables' as v;
 
+$c_beam_outer: rgba(#00FFFF, 40%);
+$c_core_dark: #98ffff; // in use
+$c_core_mid: #ccffff;
+$c_core_bright: #f3ffff;
+
 /* CONTENTS
     This file contains styles specific to the homepage.
         -- || Fonts
@@ -34,8 +39,8 @@
     width: 100%;
     background: linear-gradient(90deg, 
                                 rgba(black, 0) calc(50% - 135px),
-                                rgba(#00FFFF, 40%) calc(50% - 135px),
-                                rgba(#00FFFF, 40%) calc(50% + 135px),
+                                $c_beam_outer calc(50% - 135px),
+                                $c_beam_outer calc(50% + 135px),
                                 rgba(black, 0%) calc(50% + 135px));
 
     // Apply the "inner core" of the beam
@@ -67,7 +72,7 @@
 
 .beam-on-floor{
     display: block;
-    background: rgba(#00FFFF, 40%);     // match the "middle bit" of the .beam background gradient
+    background: $c_beam_outer;
     
     position: absolute;
     top: 190px;                         // match the height of .decorative-contents .beam (so outer beam is continuous)
@@ -146,9 +151,10 @@ nav{
         font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
         color: white;
 
-        &:hover, &:active, &:focus{
+        &:hover, &:focus{
+            outline: transparent solid 1px;
             background: rgba(#fff, 30%);
-            border-bottom: 3px solid #98ffff; // this is the colour of the outmost layer of the "beam core"
+            border-bottom: 3px solid $c_core_dark;
         }
     }
 }
@@ -247,8 +253,8 @@ h1{
 
     a{
         display: inline-block;
-        background: black;
-        border: 1px solid cyan;
+        background: linear-gradient(50deg, black 20%, #111 95%);
+        border: 3px solid v.$c_logo_main;
         border-radius: 2.3rem;
 
         padding: 0.70rem 1.75rem;
@@ -256,6 +262,12 @@ h1{
         font-size: 1.3rem;
         font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
         color: white;
+
+        &:hover, &:focus{
+            background: linear-gradient(50deg, #181818 20%, #282828 95%);
+            color: v.$c_logo_main;
+            border-color: white;
+        }
     }
 }
 
