@@ -140,7 +140,12 @@ $breakpoint_3_columns: 1125px;
     }
 }
 
+.decorative-container{
+    display: flex;
+    justify-content: center;
 
+    width: 100%;
+}
 
 
 
@@ -168,17 +173,30 @@ $breakpoint_3_columns: 1125px;
 
 // Add a decorative image on wider screens, to fill some of that gaping empty space
 @media screen and (min-width: v.$breakpoint_wide_screen){
-    .decorative{
-        position: absolute;
-        top: 0;
-        left: 0;
+    .whole-page-container{
+        display: flex;
+        align-content: stretch;
+        padding-bottom: 0;
+    }
+    .decorative-background-layer{
         width: 100%;
-        height: 1060px;//1047px 120vh
-    
-        // Make the gradient look like it's coming from the middle of the decorative arcane rune picture
+        padding-bottom: 2rem;
         background: radial-gradient(circle at 340px 630px,rgb(76, 117, 117) 1%, rgb(33, 73, 73) 5%, transparent 40%);
-        div{
-            position: relative;
+    }
+    //.decorative-container{
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+        //width: 100%;
+        //height: 1060px;//1047px 120vh
+    
+        //min-height: calc(100vh - 7.5rem - 3rem);    // whole-page-cotnainer min-height; plus padding-bottom; less heading height; less nav height (in wide mode)
+
+        // Make the gradient look like it's coming from the middle of the decorative arcane rune picture
+        //background: radial-gradient(circle at 340px 630px,rgb(76, 117, 117) 1%, rgb(33, 73, 73) 5%, transparent 40%);
+        div.decorative-pic{
+            position: absolute;
+
             top: 305px;
             left: 10px;
     
@@ -191,7 +209,7 @@ $breakpoint_3_columns: 1125px;
             background-size: contain;
             background-repeat: no-repeat;
         } 
-    }  
+    //}  
 
     .project-tile-container{
         gap: 5rem 7rem;
