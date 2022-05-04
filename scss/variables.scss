@@ -1,9 +1,50 @@
 
 
-
-$c_logo_main: #00d3ff;
 $c_core_dark: #98ffff; // in use
 
 
 
+$c_background: #303030;
+$g_background: linear-gradient(135deg, #404040 0%, #303030 5%, #202020 95%, #101010 100%);
+
+$c_grey_underlines: #707070;
+$c_outer_beam: #1d8383;
+
+$c_accent_1: #2DCFCF; //#00E0FF;
+$c_accent_2: #689494;//#808080;//#258888;
+
+
+
 $breakpoint_wide_screen: 850px;
+
+
+/*
+WORKING
+Possible colours for accents etc.
+----------------------------------
+nice green = #00df38;
+nice blue = #00E0FF;
+hoodie red = #7f0a15;
+
+outer beam against background = #1d8383;
+monster face red = #8f0000;
+
+$c_beam_outer: rgba(#00FFFF, 40%);
+$c_core_dark: #98ffff; // in use
+$c_core_mid: #ccffff;
+$c_core_bright: #f3ffff;
+
+// Outer beam #1d8383
+Adobe colour thingy, default
+#18508F = ok shade of mid blue
+#1A7899 = nice shade of blue. Darker than my fave, but in the same region
+#1A9975 = a greeny teal, in between outer beam aaaand...
+#188F4C = nice shade of green. 
+
+Adobe colour thingy, monochrome:
+#6BCFCF = desatured lighter shade
+#2DCFCF = saturated lighter shade
+
+
+
+*/

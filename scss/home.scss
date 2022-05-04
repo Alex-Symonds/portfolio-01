@@ -1,6 +1,6 @@
 @use 'variables' as v;
 
-$c_beam_outer: rgba(#00FFFF, 40%);
+$beam_lighting_effect: rgba(#00FFFF, 40%);
 $c_core_dark: #98ffff; // in use
 $c_core_mid: #ccffff;
 $c_core_bright: #f3ffff;
@@ -39,8 +39,8 @@ $c_core_bright: #f3ffff;
     width: 100%;
     background: linear-gradient(90deg, 
                                 rgba(black, 0) calc(50% - 135px),
-                                $c_beam_outer calc(50% - 135px),
-                                $c_beam_outer calc(50% + 135px),
+                                $beam_lighting_effect calc(50% - 135px),
+                                $beam_lighting_effect calc(50% + 135px),
                                 rgba(black, 0%) calc(50% + 135px));
 
     // Apply the "inner core" of the beam
@@ -72,7 +72,7 @@ $c_core_bright: #f3ffff;
 
 .beam-on-floor{
     display: block;
-    background: $c_beam_outer;
+    background: $beam_lighting_effect;
     
     position: absolute;
     top: 190px;                         // match the height of .decorative-contents .beam (so outer beam is continuous)
@@ -121,6 +121,8 @@ $c_core_bright: #f3ffff;
 
     width: 100%;
     height: 2rem;
+
+    border-bottom: none;
 }
 
 nav{
@@ -246,7 +248,7 @@ h1{
     a{
         display: inline-block;
         background: linear-gradient(50deg, black 20%, #111 95%);
-        border: 3px solid v.$c_logo_main;
+        border: 3px solid v.$c_accent_1;
         border-radius: 2.3rem;
 
         padding: 0.70rem 1.75rem;
@@ -257,7 +259,7 @@ h1{
 
         &:hover, &:focus{
             background: linear-gradient(50deg, #181818 20%, #282828 95%);
-            color: v.$c_logo_main;
+            color: v.$c_accent_1;
             border-color: white;
         }
     }

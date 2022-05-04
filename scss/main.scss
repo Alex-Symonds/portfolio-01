@@ -41,7 +41,7 @@ a{
     outline: none;
 
     &:focus{
-        outline: v.$c_logo_main dotted 2px;
+        outline: v.$c_accent_1 dotted 2px;
     }
 }
 
@@ -67,7 +67,8 @@ a{
     min-height: 100vh;
     padding: 0 0 2rem 0;
 
-    background: #303030;
+    background: v.$c_background;
+    background: v.$g_background;
     color: white;
     overflow: hidden;
 }
@@ -115,10 +116,6 @@ nav{
             position: relative;
             top: -7px;
         }
-
-        &:hover, &:focus{
-            border-color: white;
-        }
     }
 }
 
@@ -137,7 +134,7 @@ h1{
 
 h2{
     font-family: Ubunto, Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .page-contents{
