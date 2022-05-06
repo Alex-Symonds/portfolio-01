@@ -3,22 +3,6 @@
 $breakpoint_2_columns: 725px;
 $breakpoint_3_columns: 1125px; //1125px;
 
-.heading-container{
-    position: relative;
-    z-index: 2;
-
-    width: 96%;
-    max-width: 1440px;
-
-    text-align: center;
-
-    border-bottom: 1px solid v.$c_accent_1;
-
-    h1{
-        padding-bottom: 0.5rem;
-    }
-}
-
 .project-tile-container{
     display: flex;
     flex-flow: column nowrap;

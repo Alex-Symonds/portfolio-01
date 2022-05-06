@@ -34,6 +34,7 @@ This file will contain site-wide styles.
 body{
     margin: 0;
     padding: 0;
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a{
@@ -66,6 +67,8 @@ a{
     width: 100%;
     min-height: 100vh;
     padding: 0 0 2rem 0;
+
+    box-sizing: border-box;
 
     background: v.$c_background;
     background: v.$g_background;
@@ -103,8 +106,6 @@ nav{
         padding: 0.8rem 0;
 
         text-align: center;
-
-        font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
         color: white;
 
         &:hover, &:focus{
@@ -127,8 +128,6 @@ nav{
 
 
 
-
-
 h1{
     margin: 3rem 0 0 0;
     padding: 0 0.5rem;
@@ -143,6 +142,23 @@ h1{
         font-size: 2rem;
     }
 }
+
+.heading-container{
+    position: relative;
+    z-index: 2;
+
+    width: 96%;
+    max-width: 1440px;
+
+    text-align: center;
+
+    border-bottom: 1px solid v.$c_accent_1;
+
+    h1{
+        padding-bottom: 0.5rem;
+    }
+}
+
 
 h2{
     font-family: Ubunto, Verdana, Geneva, Tahoma, sans-serif;
