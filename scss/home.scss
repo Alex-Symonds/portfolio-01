@@ -8,6 +8,11 @@ $c_core_bright: #f3ffff;
 /* CONTENTS
     This file contains styles specific to the homepage.
         -- || Fonts
+        -- || Light beam
+        -- || Page layout and nav bar
+        -- || text-contents classes
+        -- || decorative-contents classes
+        -- || Responsive (wider screens)
 */
 
 
@@ -33,15 +38,28 @@ $c_core_bright: #f3ffff;
 } 
 
 
-// || Everything related to the beam of light
+// || Light beam
+/*
+    The light beam needs to start from a specific point inside the hero image and extend to the top of the page.
+    There are responsive/text-containing elements above the image, so the required height of this beam is unknown: it will change
+    depending on screen widths pushing extra lines and with users changing default text sizes.
+
+    Solution: have a .beam class to apply the vertical beam as a y-repeating background. Apply the beam class to containers around the 
+    responsive elements, allowing it to extend with them as needed. Set 0 margins between these containers so the beam appears continuous.
+    Add a "decorative-content" container for the hero image (0 margins again) and, within that, a div for the "start" of the beam: 
+    this specific instance of .beam can now have overrides applied to get pixel-defined positioning of the beam relative to the decorative-contents div.
+
+    Then a separate div for the... floor perspective beam.
+*/
+
 .beam{
     // Apply the wider "outer beam"
     width: 100%;
     background: linear-gradient(90deg, 
-                                rgba(black, 0) calc(50% - 135px),
+                                transparent calc(50% - 135px),
                                 $beam_lighting_effect calc(50% - 135px),
                                 $beam_lighting_effect calc(50% + 135px),
-                                rgba(black, 0%) calc(50% + 135px));
+                                transparent calc(50% + 135px));
 
     // Apply the "inner core" of the beam
     position: relative;
@@ -62,24 +80,43 @@ $c_core_bright: #f3ffff;
 }
 
 .decorative-contents .beam{
-    // Usually .beam is a background that must cover from top to bottom of its container, creating 
-    // a constant beam going up the page (regardless of how tall the containers responsively become).
-    // This .beam is special: it covers from the bottom of the "responsive background .beams" to where 
+    // This .beam is special: it covers from the bottom of the last responsive .beam to where 
     // the beam-source image is displayed.
-    position: absolute;             // relative messes up the layout and, fortunately, is unnecessary
+    position: absolute;             // relative messes up the decorative-contents layout and, fortunately, is unnecessary in this instance
     height: 190px;                  // this makes it end in a nicely hidden spot
 }
 
 .beam-on-floor{
+    /*
+        This class is:
+            1) Creating the perspective effect for the "bottom" of the outer beam
+            2) Fading from that beam to transparent (so the colour doesn't end abruptly on a very tall screen)
+
+        Height of 183px and a trapezoid clip-path (top-corner positions based on the outer beam; bottom-corner positions based on 
+        50% +/- 780px) results in a nice perspective angle for the beam.
+
+        A rectangle of a decent height (maybe a couple of hundred pixels) with a linear-gradient looks nice for the fade.
+
+        Solution: 6-point clip-path to effectively glue a rectangle to the bottom the trapezoid; set the background to a gradient 
+        from the beam effect to transparency; have this gradient begin at 183px, so the trapezoid is still 100% beam-y.
+    */
+
     display: block;
-    background: linear-gradient($beam_lighting_effect 183px, transparent 100%);
+    background: linear-gradient($beam_lighting_effect 183px, transparent 100%); // 183px because that's where the diagonals end
     
     position: absolute;
-    top: 190px;                         // match the height of .decorative-contents .beam (so outer beam is continuous)
+    top: 190px;             // match the height of .decorative-contents .beam (so outer beam is continuous and doesn't overlap)
     left: 0;
     width: 100%;
-    height: 400px;         // (px value set by eye) + (the padding-bottom of .whole-page-container) 151px + 2rem
+    height: 400px;          // = 183px for the diagonals + whatever-looks-nice for the gradient reactangle
 
+    /*
+        Clip-path points explanation:
+        ----------------------------------------------------------------------------------------------------------------------------------------
+        calc(50% +/- 135px) 0           =       points at the top of the trapezoid (i.e. connection to outer beam)
+        calc(50% +/- 780px) 183px       =       points at the bottom of the trapezoid AND the top of the fadey rectangle
+        calc(50% +/- 780px) 100%        =       points at the bottom of the fadey rectangle
+    */
     clip-path: polygon(
                         calc(50% - 135px) 0,
                         calc(50% + 135px) 0,
@@ -94,24 +131,19 @@ $c_core_bright: #f3ffff;
 
 
 
-
-
+// || Page layout and nav bar
 .whole-page-container{
     position: relative;
     width: 100%;
 
-    // On narrow screens the PNG may not fill the screen vertically. Set the background to change from the "normal" colour to black, hiding where the PNG ends.
+    // On narrow screens the PNG may not fill the screen vertically. Set the background colour to change from the "normal" colour to black, hiding where the PNG ends.
     background: url("../images/monster-bg-narrow.png"), linear-gradient(180deg, #303030 635px, black 635px);
     background-position: -40px 0;
     background-repeat: no-repeat;
     background-size: 1140px auto;
 
-    overflow: hidden;
+    overflow: hidden;   // Prevent "artistic" divs exceeding their bounds and causing unwanted scroll bars.
 }
-
-
-
-
 
 .nav-bar{
     display: flex;
@@ -161,6 +193,8 @@ nav{
     align-items: center;
 }
 
+
+// || text-contents classes
 .text-contents{
     display: flex;
     flex-direction: column;
@@ -169,8 +203,6 @@ nav{
     width: 100%;
     padding: 0.3rem 0 0 0;
 }
-
-
 
 .heading-container{
     display: flex;
@@ -278,6 +310,8 @@ h1{
     }
 }
 
+
+// || decorative-contents classes
 .decorative-contents{
     display: flex;
     flex-direction: column;
@@ -342,7 +376,9 @@ h1{
 }
 
 
+// || Responsive
 @media screen and (min-width: v.$breakpoint_wide_screen){
+    // || Responsive: Light beam
     .beam{
         background: linear-gradient(90deg, 
                                     transparent calc(50% - 375px),
@@ -356,7 +392,7 @@ h1{
             background-size: 220px auto;
         }    
     }
-    .decorative-contents{ //275px
+    .decorative-contents{
         .beam{
             height: 325px; // match this to ".beam-on-floor{ top:" to adjust height at which outer beam angles outwards.
 
@@ -377,6 +413,7 @@ h1{
                             calc(50% - 780px) 100%);
     }
 
+    // || Responsive: Page layout and nav bar
     .whole-page-container{
         background: url("../images/monster-bg-wide.png"), #303030;
         background-position: center top;
@@ -413,6 +450,7 @@ h1{
         }
     }
 
+    // || Responsive: text-contents
     .heading-container{
         img{
             width: 160px;
@@ -454,7 +492,7 @@ h1{
     }
 
 
-
+    // || Responsive: decorative-contents
     .hero-container{
         margin-top: 38px;
         width: 100%;
