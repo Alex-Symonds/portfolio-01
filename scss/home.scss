@@ -72,21 +72,25 @@ $c_core_bright: #f3ffff;
 
 .beam-on-floor{
     display: block;
-    background: $beam_lighting_effect;
+    background: linear-gradient($beam_lighting_effect 183px, transparent 100%);
     
     position: absolute;
     top: 190px;                         // match the height of .decorative-contents .beam (so outer beam is continuous)
     left: 0;
     width: 100%;
-    height: calc(151px + 2rem);         // (px value set by eye) + (the padding-bottom of .whole-page-container)
+    height: 400px;         // (px value set by eye) + (the padding-bottom of .whole-page-container) 151px + 2rem
 
     clip-path: polygon(
                         calc(50% - 135px) 0,
                         calc(50% + 135px) 0,
+                        calc(50% + 780px) 183px,
                         calc(50% + 780px) 100%,
-                        calc(50% - 780px) 100%);
+                        calc(50% - 780px) 100%,
+                        calc(50% - 780px) 183px
+                    );
 
 }
+
 
 
 
@@ -95,7 +99,6 @@ $c_core_bright: #f3ffff;
 .whole-page-container{
     position: relative;
     width: 100%;
-    padding: 0 0 2rem 0;
 
     // On narrow screens the PNG may not fill the screen vertically. Set the background to change from the "normal" colour to black, hiding where the PNG ends.
     background: url("../images/monster-bg-narrow.png"), linear-gradient(180deg, #303030 635px, black 635px);
