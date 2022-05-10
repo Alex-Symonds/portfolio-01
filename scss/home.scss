@@ -153,7 +153,17 @@ $breakpoint_nav_avoid_outer_beam: 590px;
     position: relative;
     z-index: 3;
     border-bottom: none;
+
+    background: rgba(#000, 65%);    // The nav bar overlaps the bright beam, so this makes it show up a bit
 }
+
+nav a{
+    &:hover,
+    &:focus{
+        background: rgba(v.$c_outer_beam, 95%);
+    }
+}
+
 
 .page-contents{
     display: flex;
@@ -346,13 +356,19 @@ h1{
 
 // || Responsive
 // Prevent nav links from overlapping the inner beam.
-@media screen and (min-width: $breakpoint_nav_avoid_beam_core){
+@media screen and (min-width: $breakpoint_nav_avoid_inner_beam){
     nav{
         width: 100%;
         justify-content: space-between;
-
+        
         a{
-            max-width: calc(50% - 78px);
+            max-width: calc(50% - 78px + 0.5px);    // = half screen; less half inner beam; plus 0.5 to placate the God of Rounding on odd-numbered screens.
+            
+            &:hover,
+            &:focus{
+                background: rgba(v.$c_outer_beam, 95%);
+            }
+
         }
     }
 }
@@ -360,37 +376,56 @@ h1{
 @media screen and (min-width: $breakpoint_nav_avoid_outer_beam){
     .nav-bar{
         background: none;
+        height: max(2rem, 50px);
     }
+
     nav{
         width: 100%;
-        a{
-            max-width: calc(50% - 135px);
 
-            &:hover{
+        a{
+            font-size: 1.2rem;
+            height: max(2rem, 50px);
+            padding: 0.8rem 2rem 0;
+
+            &:hover,
+            &:focus{
                 border-color: transparent;
             }
 
-            &:first-of-type:hover,
-            &:first-of-type:focus{
-                background: linear-gradient(270deg, $beam_lighting_effect 70%, transparent 100%);
+
+            &:first-of-type{
+                text-align: right;
+                //padding-right: 2rem;
+                max-width: calc(50% - 135px - 0.5px);   // = half screen; less half the outer beam width; less 0.5px to placate the God of Rounding on odd-numbered screen widths.
+                
+                &:hover,
+                &:focus{
+                    background: linear-gradient(270deg, $beam_lighting_effect 70%, transparent 100%);
+                }
             }
-            
-            &:last-of-type:hover,
-            &:last-of-type:focus{
-                background: linear-gradient(90deg, $beam_lighting_effect 70%, transparent 100%);
+
+            &:last-of-type{
+                text-align: left;
+                //padding-left: 2rem;
+                max-width: calc(50% - 135px + 0.5px); // = half screen; less half the outer beam width; plus 0.5px to placate the God of Rounding on odd-numbered screen widths.
+
+                &:hover,
+                &:focus{
+                    background: linear-gradient(90deg, $beam_lighting_effect 70%, transparent 100%);
+                }
             }
         }
     }
 }
-// When space allows, use the two sides of the outer beam as visual containers for the two nav bar links.
+// Go to "wide mode": bigger pictures, bigger text, use the two sides of the outer beam as visual containers for the two nav bar links.
 @media screen and (min-width: v.$breakpoint_wide_screen){
     // || Responsive: Light beam
     .beam{
         background: linear-gradient(90deg, 
-                                    transparent calc(50% - 375px),
-                                    rgba(#00FFFF, 40%) calc(50% - 375px),
-                                    rgba(#00FFFF, 40%) calc(50% + 375px),
-                                    transparent calc(50% + 375px));
+                                    transparent calc(50% - 320px),
+                                    rgba(#00FFFF, 40%) calc(50% - 320px),
+                                    rgba(#00FFFF, 40%) calc(50% + 320px),
+                                    transparent calc(50% + 320px));
     
 
         &::before{
@@ -400,7 +435,7 @@ h1{
     }
     .decorative-contents{
         .beam{
-            height: 325px; // match this to ".beam-on-floor{ top:" to adjust height at which outer beam angles outwards.
+            height: 240px; // match this to ".beam-on-floor{ top:" to adjust height at which outer beam angles outwards.
 
             &::before{
                 background-repeat: no-repeat;
@@ -409,33 +444,45 @@ h1{
         }
     }
     .beam-on-floor{
-        top: 325px; // match this to ".decorative-contents .beam{ height:" to adjust height at which outer beam angles outwards.
-        height: calc(144px + 2rem);
-    
+        top: 240px; // match this to ".decorative-contents .beam{ height:" to adjust height at which outer beam angles outwards.
+
+        background: radial-gradient(ellipse at center 5px, $beam_lighting_effect 320px, transparent 600px);
+        background-position: center top;
+        background-size: 1920px 380px;
+        background-repeat: no-repeat;
+
         clip-path: polygon(
-                            calc(50% - 375px) 0,
-                            calc(50% + 375px) 0,
-                            calc(50% + 780px) 100%,
-                            calc(50% - 780px) 100%);
+            calc(50% - 320px) 0,
+            calc(50% + 320px) 0,
+            calc(50% + 900px) 183px,
+            calc(50% + 900px) 100%,
+            calc(50% - 900px) 100%,
+            calc(50% - 900px) 183px
+        );
+
     }
 
     // || Responsive: Page layout and nav bar
     .whole-page-container{
-        background: url("../images/monster-bg-wide.png"), #303030;
-        background-position: center top;
+        background: url("../images/monster-bg-wrapper.png"), linear-gradient(#303030 700px, black 701px);
+        background-position: calc(50% + 80px) top;
         background-repeat: repeat-x;
+        background-size: 1688px auto;
 
+        position: relative;
         &::after{
             display: block;
             content: '';
 
             position: absolute;
             top: 0;
-            left: calc(50% - 960px);
+            left: calc(50% - 844px + 80px);
             
-            background: url("../images/dissolver-overlay.png");
-            height: 1020px;
-            width: 1920px;
+            background: url("../images/dissolver-overlay-wrapper.png");
+
+            background-size: 1688px 844px;
+            width: 1688px;
+            height: 844px;
         }
     }
 
@@ -445,22 +492,28 @@ h1{
     
     nav{
         justify-content: space-between;
-        width: 750px;
+        width: 640px;
 
         a{
             font-size: 1.4rem;
             height: 3rem;
-            width: 265px; // this should fill the "outer beam" area on wide-mode
+            width: 210px; // this should fill the "outer beam" area on wide-mode
             max-width: none;
             padding: 0.6rem 0 0; 
-            
-            &:first-of-type:hover,
-            &:first-of-type:focus,
-            &:last-of-type:hover,
-            &:last-of-type:focus{
-                outline: transparent solid 1px;
-                background: rgba(#fff, 30%);
-                border-bottom: 3px solid v.$c_core_dark;
+
+            &:first-of-type,
+            &:last-of-type{
+                padding: 0.6rem 0 0;
+                text-align: center;
+                max-width: none;
+
+                &:hover,
+                &:focus{
+                    outline: transparent solid 1px;
+                    background: rgba(#fff, 30%);
+                    border-bottom: 3px solid v.$c_core_dark;
+                }
+
             }
         }
     }
@@ -468,19 +521,19 @@ h1{
     // || Responsive: text-contents
     .heading-container{
         img{
-            width: 160px;
+            width: 134px;
         }
     }
 
     h1{
-        font-size: 3.5rem;
+        font-size: 3rem;
         z-index: 3;
         background-position-y: 0.2rem;
     }
 
     .subheading{
         top: -0.6rem;
-        font-size: 2.3rem;
+        font-size: 1.7rem;
         padding: 0.4rem 1.5rem;
         border-radius: 2.7rem;
     }
@@ -488,10 +541,10 @@ h1{
     .tagline-container{
         max-width: 523px;
         p{
-            margin: 2rem 0 0 0;
+            margin: 1.5rem 0 0 0;
             padding: 1rem 1.75rem; 
-            font-size: 1.55rem;
-            line-height: 2.2rem;
+            font-size: 1.4rem;
+            line-height: 2rem;
         }  
     }
 
@@ -515,27 +568,30 @@ h1{
         overflow: visible;
     
         .beam-source{
-            top: 20px;
+            top: 10px;
             img{
                 width: 220px;
             }
         }
         .me-rune-container{
-            margin-top: 65px;
+            margin-top: 40px;
+
+            .rune img,
+            .me img{
+                width: 490px;
+                height: auto;
+            }
         }
         .dissolver-lefty{
             top: 0;
-            left: calc(50% - 350px);
-
-            width: 186px;
+            left: calc(50% - 295px);
+            width: 160px;
         }
         .dissolver-righty{
             top: -70px;
-            right: calc(50% - 420px);
-
-            width: 260px;
+            right: calc(50% - 340px);
+            width: 200px;  
         }
-
     }
 }
 

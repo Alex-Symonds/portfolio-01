@@ -78,7 +78,7 @@ a{
     display: flex;
     justify-content: center;
 
-    background: rgba(#000, 50%);
+    background: linear-gradient(0deg, #404040 0%, #303030 5%, #202020 95%, #101010 100%);
 
     width: 100%;
     height: max(2rem, 45px);
@@ -118,7 +118,7 @@ nav{
 
         img{
             position: relative;
-            top: -4px;
+            top: -2px;
         }
     }
 
@@ -175,18 +175,17 @@ h2{
 @media screen and (min-width: v.$breakpoint_wide_screen){
 
     .nav-bar{
-        background: transparent;    // Darker background was for contrast when the white links went over the "beam core".
         height: 3rem;
     }
     
     nav{
-        width: 750px;
+        width: 640px;
 
         a{
             font-size: 1.4rem;
 
             height: 3rem;
-            width: 265px; // this should fill the "outer beam" area on wide-mode
+            width: 210px; // this should fill the "outer beam" area on wide-mode
             padding: 0.6rem 0 0;    
         }
     }
