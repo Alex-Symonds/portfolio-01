@@ -203,40 +203,42 @@ nav a{
 
 h1{
     position: relative;
-    z-index: 2;
+    z-index: 3;
 
     margin: 0.3rem 0 0 0;
-    padding: 0 0.5rem;
+    padding: 0 0.5rem 3px;
 
     background: white;
     border-radius: 1.2rem;
 
     font-family: Archi, Verdana, Geneva, Tahoma, sans-serif;
 
-    font-size: 1.8rem;
+    font-size: 1.8rem; //1.8rem;
     color: transparent;
 
     background: white;
-    background: url("../images/name.svg");
+    background: url("../images/name1.svg");
     background-size: cover;
-    background-position: 0.3rem 0.1rem;
     background-repeat: no-repeat;
 }
 
 
 .subheading{
     position: relative;
-    top: -0.25rem;
+    top: -0.25rem;//-5px;
     z-index: 2;
-
-    font-size: 1.4rem;
-
+    
+    width: 98%;
     padding: 0.1rem 0.7rem;
 
-    color: black;
-    background: white;
-    border-radius: 1rem;
+    font-size: 1.2rem;
     font-family: Ubuntu, Verdana, Geneva, Tahoma, sans-serif;
+    
+    color: black;
+
+    border: 1px solid rgba(white, 10%);
+    border-width: 1px 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(white, 95%) 30%, rgba(white, 95%) 70%, transparent 100%);
 }
 
 .tagline-container{
@@ -532,14 +534,11 @@ h1{
     h1{
         font-size: 3rem;
         z-index: 3;
-        background-position-y: 0.2rem;
     }
 
     .subheading{
         top: -0.6rem;
         font-size: 1.7rem;
-        padding: 0.4rem 1.5rem;
-        border-radius: 2.7rem;
     }
 
     .tagline-container{
