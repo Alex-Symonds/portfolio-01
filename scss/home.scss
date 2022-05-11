@@ -57,7 +57,7 @@ $breakpoint_nav_avoid_outer_beam: 590px;
 */
 
 .beam{
-    // Apply the wider "outer beam"
+    // Apply the transclucent "outer beam"
     width: 100%;
     background: linear-gradient(90deg, 
                                 transparent calc(50% - 135px),
@@ -87,32 +87,33 @@ $breakpoint_nav_avoid_outer_beam: 590px;
     // This .beam is special: it covers from the bottom of the last responsive .beam to where 
     // the beam-source image is displayed.
     position: absolute;             // relative messes up the decorative-contents layout and, fortunately, is unnecessary in this instance
-    height: 230px; //190px;                  // this makes it end in a nicely hidden spot
+    height: 230px;                  // this makes it end in a nicely hidden spot
 }
 
 .beam-on-floor{
     /*
         This class is:
             1) Creating the perspective effect for the "bottom" of the outer beam
-            2) Fading from that beam to transparent (so the colour doesn't end abruptly on a very tall screen)
+            2) Fading from that beam to transparent (so the outer beam colour doesn't end abruptly)
 
         Height of 183px and a trapezoid clip-path (top-corner positions based on the outer beam; bottom-corner positions based on 
-        50% +/- 780px) results in a nice perspective angle for the beam.
+        50% +/- 780px) results in a nice perspective angle for the beam, but it undesirably cuts off the radial gradient at the bottom.
 
-        A rectangle of a decent height (maybe a couple of hundred pixels) with a linear-gradient looks nice for the fade.
-
-        Solution: 6-point clip-path to effectively glue a rectangle to the bottom the trapezoid; set the background to a gradient 
-        from the beam effect to transparency; have this gradient begin at 183px, so the trapezoid is still 100% beam-y.
+        Solution: 6-point clip-path to add a rectangle underneath the trapezoid: this allows space for the gradient to fade out nicely.
     */
 
     display: block;
-    background: linear-gradient($beam_lighting_effect 183px, transparent 100%); // 183px because that's where the diagonals end
-    
     position: absolute;
-    top: 230px; //190px;             // match the height of .decorative-contents .beam (so outer beam is continuous and doesn't overlap)
     left: 0;
     width: 100%;
-    height: 400px;          // = 183px for the diagonals + whatever-looks-nice for the gradient reactangle
+    height: 400px;          // = 183px for the diagonals + whatever-looks-nice for the gradient rectangle
+
+    top: 230px; // match this to ".decorative-contents .beam{ height:" to adjust height at which outer beam angles outwards.
+
+    background: radial-gradient(ellipse at center 5px, $beam_lighting_effect 320px, transparent 600px);
+    background-position: center top;    // these background-* settings are used to adjust the appearance of the radial gradient.
+    background-size: 1920px 380px;      // <- extra important. It makes the ellipse landscape instead of vertical.
+    background-repeat: no-repeat;
 
     /*
         Clip-path points explanation:
@@ -122,15 +123,16 @@ $breakpoint_nav_avoid_outer_beam: 590px;
         calc(50% +/- 780px) 100%        =       points at the bottom of the fadey rectangle
     */
     clip-path: polygon(
-                        calc(50% - 135px) 0,
-                        calc(50% + 135px) 0,
-                        calc(50% + 780px) 183px,
-                        calc(50% + 780px) 100%,
-                        calc(50% - 780px) 100%,
-                        calc(50% - 780px) 183px
-                    );
+        calc(50% - 135px) 0,
+        calc(50% + 135px) 0,
+        calc(50% + 780px) 183px,
+        calc(50% + 780px) 100%,
+        calc(50% - 780px) 100%,
+        calc(50% - 780px) 183px
+    );
 
 }
+
 
 
 
@@ -456,11 +458,6 @@ h1{
     }
     .beam-on-floor{
         top: 240px; // match this to ".decorative-contents .beam{ height:" to adjust height at which outer beam angles outwards.
-
-        background: radial-gradient(ellipse at center 5px, $beam_lighting_effect 320px, transparent 600px);
-        background-position: center top;
-        background-size: 1920px 380px;
-        background-repeat: no-repeat;
 
         clip-path: polygon(
             calc(50% - 320px) 0,
