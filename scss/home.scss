@@ -110,7 +110,7 @@ $breakpoint_nav_avoid_outer_beam: 590px;
 
     top: 230px; // match this to ".decorative-contents .beam{ height:" to adjust height at which outer beam angles outwards.
 
-    background: radial-gradient(ellipse at center 5px, $beam_lighting_effect 320px, transparent 600px);
+    background: radial-gradient(ellipse at center 5px, #006666 320px, transparent 600px);
     background-position: center top;    // these background-* settings are used to adjust the appearance of the radial gradient.
     background-size: 1920px 380px;      // <- extra important. It makes the ellipse landscape instead of vertical.
     background-repeat: no-repeat;
@@ -457,7 +457,7 @@ h1{
         }
     }
     .beam-on-floor{
-        top: 240px; // match this to ".decorative-contents .beam{ height:" to adjust height at which outer beam angles outwards.
+        top: 239px; // (almost) match this to ".decorative-contents .beam{ height:" to adjust height at which outer beam angles outwards.
 
         clip-path: polygon(
             calc(50% - 320px) 0,
