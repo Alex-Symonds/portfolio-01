@@ -1,9 +1,9 @@
 @use 'variables' as v;
 
-$breakpoint_2_columns: 725px;
-$breakpoint_3_columns: 1125px;
+$breakpoint_2_columns: 730px; //725px; // @ 18rem card
+$breakpoint_3_columns: 1130px; //1125px; // @ 18rem card
 
-.project-tile-container{
+.project-card-container{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -20,9 +20,9 @@ $breakpoint_3_columns: 1125px;
     position: relative;
     z-index: 2;
 
-    article{
+    .card{
         box-sizing: border-box;
-        width: 18rem;
+        width: 18.1rem;
         max-width: 100%;
 
         padding: 0.5rem 0.8rem 0.5rem;
@@ -48,11 +48,17 @@ $breakpoint_3_columns: 1125px;
 
     .screenie-links{
         width: 292px;
-        box-sizing: border-box;
         max-width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+
+        .screenie-container{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
 
         img{
-            width: 260px;
             border: 1px solid #777;
             margin: 0 auto 0.3rem;
         }
@@ -135,25 +141,34 @@ $breakpoint_3_columns: 1125px;
 
 /*
     Desired behaviour: the entire group of project cards should be centered; cards in an incomplete row should be aligned left.
-    "space-evenly" centres, but too much: it centres the cards on the incomplete row as well.
-    "flex-start" aligns left, but too much: the group of cards is also aligned left.
+        >> "space-evenly" centres, but too much: it centres the cards on the incomplete row as well.
+        >> "flex-start" aligns left, but too much: the group of cards is also aligned left.
     Conclusion: flex-start, then use media queries to control the width of the flex ele; parent container will centre the group.
 */
 @media screen and(min-width: $breakpoint_2_columns){
-    .project-tile-container{
+    .project-card-container{
         flex-flow: row wrap;
         align-items: flex-start;
         justify-content: flex-start;
 
-        width: 43rem;
+        width: 44rem;
     }
 }
 
 @media screen and(min-width: $breakpoint_3_columns){
-    .project-tile-container{
-        width: 68rem;
+    .project-card-container{
+        width: 69rem;
     }
 }
+
+
+// Slightly larger screenie PNGs on wider screens
+@media screen and (min-width: 850px){
+    .project-card-container .screenie-links img{
+        width: 260px;
+    }
+}
+
 
 // Add a decorative image on wider screens, to fill some of that gaping empty space
 @media screen and (min-width: v.$breakpoint_wide_screen){
@@ -186,16 +201,30 @@ $breakpoint_3_columns: 1125px;
         background-repeat: no-repeat;
     } 
   
-    .project-tile-container{
-        gap: 5rem 7rem;
-        margin-top: 5rem;
+    .project-card-container{
+        margin-top: 4.5rem;
 
-        article{
+        .card{
             background: rgba(v.$c_background, 90%);
         }
     }
 }
 
+
+// On very wide screens, define the position of the decorative arcane circle relative to the center to avoid it ending up somewhere in Narnia on the left.
+@media screen and (min-width: v.$breakpoint_wide_screen_ends){
+
+    // 612px was set by eye to line up with the "left: 10px" position on a 1900px screen.
+    // 330px is half the width of the image; subtract that first so that going forwards we can think in terms of the image's centre
+    // instead of its left side, as we do with radial-gradient.
+    div.decorative-pic{
+        left: calc(50% - 330px - 612px);
+    } 
+    .whole-page-container .decorative-background-layer{
+        background: radial-gradient(circle at calc(50% - 612px) 630px,rgb(76, 117, 117) 1%, rgb(33, 73, 73) 5%, transparent 40%);
+    }
+
+}
 
 
 

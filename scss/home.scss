@@ -142,11 +142,13 @@ $breakpoint_nav_avoid_outer_beam: 590px;
     position: relative;
     width: 100%;
 
-    // On narrow screens the PNG may not fill the screen vertically. Set the background colour to change from the "normal" colour to black, hiding where the PNG ends.
-    background: url("../images/monster-bg-narrow.png"), linear-gradient(180deg, #303030 635px, black 635px);
+    // On narrow screens the PNG may not fill the screen vertically. Set the background colour to change from the "normal" colour to black, hiding where the PNG ends.   
+    background: url("../images/monster-bg-wrap.svg"), linear-gradient(180deg, #303030 635px, black 635px);
+    background-size: 1282px auto;
+
     background-position: -40px 0;
     background-repeat: no-repeat;
-    background-size: 1140px auto;
+    
 
     overflow: hidden;   // Prevent "artistic" divs exceeding their bounds and causing unwanted scroll bars.
 }
@@ -326,27 +328,40 @@ h1{
 
     position: relative;
 
+    height: 400px;
+
     .beam-source{
         position: absolute;
         z-index: 2;
 
-        //top: 50px;
         top: 60px;
     }
 
     .me-rune-container{
         position: relative;
-        margin-top: 85px; //65px;
+        margin-top: 85px;
 
         .me{
             position: relative;
             z-index: 3;
+            left: 4px;
+
+            width: 221px;
+            height: auto;
         }
 
-        .rune{
-            position: absolute;
-            top: 0;
-            left: 0;
+        .rune-container{
+            perspective: 450px;
+
+            .rune{
+                position: absolute;
+                top: -30px;
+                left: -78px;
+                transform: rotateX(90deg);
+
+                width: 375px;
+                height: auto;
+            }
         }
     }
 
@@ -472,7 +487,6 @@ h1{
 
     // || Responsive: Page layout and nav bar
     .whole-page-container{
-        background: url("../images/monster-bg-wrapper.png"), linear-gradient(#303030 700px, black 701px);
         background-position: calc(50% + 80px) top;
         background-repeat: repeat-x;
         background-size: 1688px auto;
@@ -587,9 +601,21 @@ h1{
         .me-rune-container{
             margin-top: 40px;
 
-            .rune img,
-            .me img{
-                width: 490px;
+            .rune-container{
+                perspective: 650px;
+
+                .rune{
+                    top: -30px;
+                    left: -95px;
+                    transform: rotateX(90deg);
+
+                    width: 490px;
+                    height: auto;
+                }
+            }
+
+            .me{
+                width: 300px;
                 height: auto;
             }
         }

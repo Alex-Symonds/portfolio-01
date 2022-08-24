@@ -5,6 +5,11 @@
         <link href="static/css/main.css" rel="stylesheet">
         <link href="static/css/projects.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" href="favicon.ico" sizes="any">
+        <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="static/images/apple-touch-icon.png">
+        <link rel="manifest" href="manifest.webmanifest">
     </head>
     <body>
         <div class="whole-page-container">
@@ -27,14 +32,37 @@
 
                     <div class="decorative-pic"></div>
 
-                    <section class="project-tile-container">
-                        <article>
+                    <section class="project-card-container">
+                        <article class="card">
+                            <h2>Adminas-React</h2>
+                            <p>Refactored to utilise React on the "Job" page, plus other improvements to features, design and code.</p>
+                            <div class="tech-icon-strip">
+                                <img src="static/images/tech_react.svg" width="29px" alt="React" />
+                                <img src="static/images/tech_html.svg" width="29px" alt="HTML5" />
+                                <img src="static/images/tech_scss.svg" width="29px" alt="CSS3" />
+                                <img src="static/images/tech_js.svg" width="29px" alt="JavaScript" />
+                                <img src="static/images/tech_python.svg" width="29px" alt="Python" />
+                                <img src="static/images/tech_django.svg" width="29px" alt="Django" />
+                            </div>
+                            <div class="screenie-links">
+                                <div class="screenie-container">
+                                    <picture>
+                                        <source srcset="static/images/screenie-adminas-react-items-260px.png" media="(min-width: 850px)"/>
+                                        <img src="static/images/screenie-adminas-react-items-248px.png" width="248px" alt="Screenshot of Adminas-React" />
+                                    </picture>
+                                </div>
+                                <a href="https://github.com/Alex-Symonds/adminas-react" class="code-link">view code</a>
+                                <a href="#" class="live-link">live demo</a>
+                            </div>
+                        </article>
+
+                        <article class="card">
                             <h2>Adminas</h2>
                             <p>Order entry program. Check prices and specifications; issue PDF documents.</p>
                             <div class="tech-icon-strip">
-                                <img src="static/images/tech_js.svg" width="29px" alt="JavaScript" />
                                 <img src="static/images/tech_html.svg" width="29px" alt="HTML5" />
                                 <img src="static/images/tech_scss.svg" width="29px" alt="CSS3" />
+                                <img src="static/images/tech_js.svg" width="29px" alt="JavaScript" />
                                 <img src="static/images/tech_python.svg" width="29px" alt="Python" />
                                 <img src="static/images/tech_django.svg" width="29px" alt="Django" />
                             </div>
@@ -51,13 +79,13 @@
                         </article>
     
     
-                        <article>
+                        <article class="card">
                             <h2>Starfleet Secure Comms</h2>
-                            <p>Twitter-like social network with a '90s Star&nbsp;Trek theme.</p>
+                            <p>Twitter-like social network with a '90s Star&nbsp;Trek theme. Unit tests (Django and Selenium).</p>
                             <div class="tech-icon-strip">
-                                <img src="static/images/tech_js.svg" width="29px" alt="JavaScript" />
                                 <img src="static/images/tech_html.svg" width="29px" alt="HTML5" />
                                 <img src="static/images/tech_scss.svg" width="29px" alt="CSS3" />
+                                <img src="static/images/tech_js.svg" width="29px" alt="JavaScript" />
                                 <img src="static/images/tech_python.svg" width="29px" alt="Python" />
                                 <img src="static/images/tech_django.svg" width="29px" alt="Django" />
                                 <span class="minor"><img src="static/images/tech_react.svg" width="29px" alt="React" /></span>
@@ -72,7 +100,7 @@
                             </div>
                         </article>
     
-                        <article>
+                        <article class="card">
                             <h2>Portfolio (Monsters)</h2>
                             <p>Static portfolio website. You are here.</p>
                             <div class="tech-icon-strip">
@@ -90,7 +118,7 @@
                             </div>
                         </article>
     
-                        <!-- <article>
+                        <!-- <article class="card">
                             <h2>indentec.com</h2>
                             <p>Static website for small manufacturing company.</p>
                             <div class="tech-icon-strip">
