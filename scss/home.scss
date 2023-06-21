@@ -13,7 +13,7 @@
 
 // || SCSS Variables
 $beam_lighting_effect: rgba(#00FFFF, 40%);
-$c_core_dark: #98ffff; // in use
+$c_core_dark: #98ffff;
 $c_core_mid: #ccffff;
 $c_core_bright: #f3ffff;
 
@@ -45,8 +45,7 @@ $breakpoint_nav_avoid_outer_beam: 590px;
 // || Light beam
 /*
     The light beam needs to start from a specific point inside the hero image and extend to the top of the page.
-    There are responsive/text-containing elements above the image, so the required height of this beam is unknown: it will change
-    depending on screen widths pushing extra lines and with users changing default text sizes.
+    There are responsive/text-containing elements above the image, so the height of the beam is unknown.
 
     Solution: have a .beam class to apply the vertical beam as a y-repeating background. Apply the beam class to containers around the 
     responsive elements, allowing it to extend with them as needed. Set 0 margins between these containers so the beam appears continuous.
@@ -79,7 +78,6 @@ $breakpoint_nav_avoid_outer_beam: 590px;
         background-image: url("../images/kaboom-beam-only-narrow.png");
         background-repeat: repeat-y;
         background-position: center top;
-        //background-size: 155px 100%;  // This made the PNG looks fuzzy on the nav bar for some reason. O.o
     }    
 }
 
@@ -135,14 +133,12 @@ $breakpoint_nav_avoid_outer_beam: 590px;
 
 
 
-
-
 // || Page layout and nav bar
 .whole-page-container{
     position: relative;
     width: 100%;
 
-    // On narrow screens the PNG may not fill the screen vertically. Set the background colour to change from the "normal" colour to black, hiding where the PNG ends.   
+    // On narrow screens the background pic may not fill the screen vertically. Set the background colour to change from the "normal" colour to black, hiding where the PNG ends.   
     background: url("../images/monster-bg-wrap.svg"), linear-gradient(180deg, #303030 635px, black 635px);
     background-size: 1282px auto;
 
@@ -219,7 +215,7 @@ h1{
 
     font-family: Archi, Verdana, Geneva, Tahoma, sans-serif;
 
-    font-size: 1.8rem; //1.8rem;
+    font-size: 1.8rem;
     color: transparent;
 
     background: white;
@@ -231,7 +227,7 @@ h1{
 
 .subheading{
     position: relative;
-    top: -0.25rem;//-5px;
+    top: -0.25rem;
     z-index: 2;
     
     width: 98%;
@@ -255,7 +251,7 @@ h1{
 
     p{
         text-align: center;
-        margin: 1.8rem 0 0 0;//0.75rem 0 0 0;
+        margin: 1.8rem 0 0 0;
         padding: 0.5rem 0.75rem; 
         font-size: 1rem;
 
@@ -274,7 +270,7 @@ h1{
 .cta-container{
     position: relative;
     z-index: 2;
-    margin-top: 1rem; //0.6rem;
+    margin-top: 1rem;
 
     a{
         display: inline-block;
@@ -318,7 +314,7 @@ h1{
     flex-direction: column;
     align-items: center;
 
-    margin-top: 40px; //20px;
+    margin-top: 40px;
 
     width: 100%;
     max-width: 100%;
@@ -368,13 +364,13 @@ h1{
     .dissolver-lefty{
         position: absolute;
         top: 20px;
-        left: calc(50% - 145px);; //calc(50% - 125px);
+        left: calc(50% - 145px);
         z-index: 2;
     }
     .dissolver-righty{
         position: absolute;
         top: 0;
-        right: calc(50% - 175px); //calc(50% - 135px);
+        right: calc(50% - 175px);
         z-index: 2;
     }
 
